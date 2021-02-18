@@ -8,8 +8,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.sample.doorservice.api.DoorApi;
 import com.sample.doorservice.model.*;
 import com.sample.doorservice.repository.ACLRepository;
@@ -117,7 +115,7 @@ public class DoorApiTest {
         String token = "Bearer " + jwtUtil.generateToken(doorUID);
 
         DoorEvent event = new DoorEvent();
-        event.eventType = DoorEventType.ENTER.name();
+        event.eventType = DoorEventType.enter;
         event.employeeId = employeeId;
         event.localTime = new Date();
         ObjectMapper mapper = new ObjectMapper();

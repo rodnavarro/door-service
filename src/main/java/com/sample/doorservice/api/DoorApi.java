@@ -2,6 +2,7 @@ package com.sample.doorservice.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sample.doorservice.model.DoorEvent;
+import com.sample.doorservice.model.DoorEventType;
 import com.sample.doorservice.model.LogType;
 import com.sample.doorservice.model.responses.EventListResponse;
 import com.sample.doorservice.model.responses.EventSaveResponse;
@@ -55,7 +56,6 @@ public class DoorApi {
 	@PostMapping("/authenticate")
 	public JWTResponse generateToken(@RequestBody AuthRequest authrequest) throws Exception {
 
-		//Try to Authenticate against DB or LDAP. Return "can't do message" if error
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authrequest.getUserName(), authrequest.getPassword()));
 		}
@@ -109,10 +109,16 @@ public class DoorApi {
 		}
 
 		//Can this Employee Access this door?
-		if(!aclService.isAuthorized(doorUID, doorEvent.employeeId)){
-			returnMessage = "Not Authorized to " + doorEvent.eventType + " in " + doorUID;
+		if(doorEvent.requiresAuthorization()){
+			if(!aclService.isAuthorized(doorUID, doorEvent.employeeId)){
+				returnMessage = "Not Authorized to " + doorEvent.eventType + " in " + doorUID;
+				logService.log(LogType.ERROR, returnMessage);
+				return new EventSaveResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), returnMessage,  null );
+			}
+		}else if(doorEvent.employeeId != null){
+			returnMessage = "This event does not require Employee Authorization. Remove the EmployeeId from the payload";
 			logService.log(LogType.ERROR, returnMessage);
-			return new EventSaveResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), returnMessage,  null );
+			return new EventSaveResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), returnMessage, null );
 		}
 
 		try{

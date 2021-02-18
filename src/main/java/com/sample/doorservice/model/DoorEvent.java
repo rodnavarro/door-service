@@ -10,14 +10,15 @@ public class DoorEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
-    public String eventType;
-    public int employeeId;
+    public DoorEventType eventType;
+    public Integer employeeId;
     public Date serverTime;
     public Date localTime;
     public String doorUID = "";
 
     public boolean isValid() {
-        return this.employeeId > 0 && localTime != null && eventType != null && isEventTypeValid(eventType.toUpperCase(Locale.ROOT)) && !doorUID.isEmpty();
+        return (requiresAuthorization() ? this.employeeId > 0 : true) && localTime != null && eventType != null && isEventTypeValid(eventType.name()) && !doorUID.isEmpty();
+
     }//isValid
 
     public static boolean isEventTypeValid(String ev) {
@@ -27,6 +28,10 @@ public class DoorEvent {
             }
         }
         return false;
+    }
+
+    public boolean requiresAuthorization(){
+        return eventType == DoorEventType.enter || eventType == DoorEventType.exit;
     }
 
 }
