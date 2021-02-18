@@ -70,6 +70,62 @@ On failure:
 }
 ```
 
+### Events
+
+Verb: GET
+```
+/events
+```
+
+This endpoint needs to be Authenticated with an Authorization header, like this
+
+```
+Bearer eyJhbGciOiJIUzI1NiJ9.eyJ00000000000000=
+
+```
+
+This will return all events.
+
+```
+{
+    "status": 200,
+    "message": "Events Fetched",
+    "timestamp": "2021-02-18T21:24:02.538+00:00",
+    "doorEvents": [
+        {
+            "id": 1,
+            "eventType": "enter",
+            "employeeId": 5,
+            "serverTime": "2021-02-18T21:23:58.890+00:00",
+            "localTime": "2021-02-18T12:11:46.000+00:00",
+            "doorUID": "lab_a",
+            "valid": true
+        },
+        {
+            "id": 2,
+            "eventType": "enter",
+            "employeeId": 5,
+            "serverTime": "2021-02-18T21:23:59.450+00:00",
+            "localTime": "2021-02-18T12:11:46.000+00:00",
+            "doorUID": "lab_a",
+            "valid": true
+        },
+        {
+            "id": 3,
+            "eventType": "enter",
+            "employeeId": 5,
+            "serverTime": "2021-02-18T21:23:59.892+00:00",
+            "localTime": "2021-02-18T12:11:46.000+00:00",
+            "doorUID": "lab_a",
+            "valid": true
+        }
+    ]
+}
+```
+
+If the user is not allowed to access a specific door then this endpoint will fail. 
+See the "Initial Data" section below on information about what information is preloaded for user and access. 
+
 ## Persistence Layer
 
 This project is using Spring Boot Data JPA with an H2 database. 
