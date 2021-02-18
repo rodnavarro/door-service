@@ -47,7 +47,7 @@ request body [json]:
 ```
 {
     "userName" : "main_building",
-    "password" : "pa%%2021!"
+    "password" : "s3cr3t-main_building"
 }
 ```
 
