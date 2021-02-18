@@ -93,7 +93,7 @@ public class DoorApiTest {
 
 
     @Test
-    public void canNotPostNegativeEmployeeIdEvent() throws Exception {
+    public void postEventWithAuthorizedUser() throws Exception {
 
         //Setup Data
         String doorUID = "test_door";
