@@ -72,9 +72,58 @@ On failure:
 }
 ```
 
-### Events
+### Save Events
+
+Verb: POST
+```
+/events
+```
+
+This endpoint needs to be Authenticated with an Authorization header, like this
+
+```
+Bearer eyJhbGciOiJIUzI1NiJ9.eyJ00000000000000=
+
+```
+
+Request body. Needs to be JSON:
+
+```
+{
+    "eventType" : "enter", 
+    "employeeId" : 5,
+    "localTime" : "2021-02-18T12:11:46"
+}
+```
+
+Possible Events as of now
+- enter
+- exit
+- heart_beat
+
+Response sample
+
+```
+{
+    "status": 200,
+    "message": "EVENT_SAVED",
+    "timestamp": "2021-02-18T21:23:59.895+00:00",
+    "doorEvent": {
+        "id": 3,
+        "eventType": "enter",
+        "employeeId": 5,
+        "serverTime": "2021-02-18T21:23:59.892+00:00",
+        "localTime": "2021-02-18T12:11:46.000+00:00",
+        "doorUID": "lab_a",
+        "valid": true
+    }
+}
+```
+
+### List Events
 
 Verb: GET
+
 ```
 /events
 ```
