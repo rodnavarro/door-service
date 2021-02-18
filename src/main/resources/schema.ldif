@@ -1,0 +1,84 @@
+dn: dc=royalcaribbean,dc=com
+objectclass: top
+objectclass: domain
+objectclass: extensibleObject
+dc: royalcaribbean
+
+# Organizational Units
+dn: ou=groups,dc=royalcaribbean,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: groups
+
+dn: ou=people,dc=royalcaribbean,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: people
+
+dn: ou=al,dc=royalcaribbean,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: al
+
+dn: ou=ad,dc=royalcaribbean,dc=com
+objectclass: top
+objectclass: organizationalUnit
+ou: ad
+
+# Create People
+
+dn: uid=rod,ou=al,dc=royalcaribbean,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Rod Navarro
+sn: Rod
+uid: rod
+userPassword: 123456
+
+
+dn: uid=john,ou=ad,dc=royalcaribbean,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: John Doe
+sn: John
+userPassword: secret
+
+dn: uid=jihn,ou=people,dc=royalcaribbean,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Jihn Die
+sn: Jihn
+uid: jihn
+userPassword: secret
+
+dn: uid=jahn,ou=people,dc=royalcaribbean,dc=com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Jahn Navarro
+sn: Jahn
+uid: jahn
+userPassword: secret
+
+# Create Groups
+dn: cn=developers,ou=groups,dc=royalcaribbean,dc=com
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: developers
+ou: developer
+uniqueMember: uid=john,ou=people,dc=royalcaribbean,dc=com
+uniqueMember: uid=jihn,ou=people,dc=royalcaribbean,dc=com
+
+dn: cn=managers,ou=groups,dc=royalcaribbean,dc=com
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: managers
+ou: manager
+uniqueMember: uid=jahn,ou=people,dc=royalcaribbean,dc=com
