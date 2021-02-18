@@ -5,7 +5,7 @@ There are some assumptions and further programming that needs to be done in a re
 
 ## Getting Started
 
-See the [design api pdf](door-api-design.pdf) and [this video](door-service api overview.mov) to gain an understanding on the API, high level
+See the [design api pdf](door-api-design.pdf) and [this video](door-service api overview.mp4) to gain an understanding on the API, high level
 
 App can be started with the following command:
 
