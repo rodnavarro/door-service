@@ -5,7 +5,9 @@ There are some assumptions and further programming that needs to be done in a re
 
 ## Getting Started
 
-Start the app with the following command
+See the [design api pdf](door-api-design.pdf) in this repo to gain an understanding on the API, high level
+
+App can be started with the following command:
 
 ```
 ./mvnw spring-boot:run -e
@@ -18,7 +20,7 @@ This application is also running an In-Memory H2 database that can be swapped fo
 
 The door-api-design.pdf in the root folder has an overview for this simple api. 
 
-In a real system, users should use a smartcard to provide a security code along with the authorization. 
+In a real system, users should use a smartcard to provide a security code along with the authorization.
 
 ## Todo Improvements
 
