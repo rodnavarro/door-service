@@ -22,16 +22,17 @@ In a real system, users should use a smartcard to provide a security code along 
 
 ## Todo Improvements
 
-- In real production: 
+- For Real Production: 
   - All communication must happen over SSL to make it harder to sniff any information over the network, such as credentials
   - Employees should authenticate with some sort of smart card system / PKI
   - Authenticate Door to get JWT token using a clock synced security code (instead of user/password) that's generated at the door and validated in the server to make it harder for 3rd parties to impersonate calls
   - For Doors, IOT Devices IPs should be private and whitelisted in firewall.
-- Create a proper devops pipeline to streamline deployments. 
-- We should containerize this service / docker to make it run env independent
-- A proper DevOps pipeline should be in place. Containerization will make this easier. An orchestration tool like Terraform, Kubernetes, or Docker Swarm could be used. 
+- DevOps
+  - A proper DevOps CD/CI pipeline should be in place - Continuous Integration (build, test, merge), Delivery (release deployable builds to a repo) and Deployment (auto deploy) 
+  - We should containerize this service / docker to make it run env independent
+  - Containerization will make this easier. An orchestration tool like Terraform, Kubernetes, or Docker Swarm could be used. 
 - Observability 
-  - Log Shipping must be implemented for debugging and alerts. A tool like logs.io could be using to query and summarize the logs to make debugging easier. 
+  - Log Shipping must be implemented for debugging and alerts. A tool like logz.io could be using to query and summarize the logs to make debugging easier. 
   - A tool like Dynatrace or Prometheus could be use for monitoring the service mesh.  
 
 ## End-Points
