@@ -51,16 +51,6 @@ public class DoorApiTest {
     @Autowired
     private ACLRepository aclRepository;
 
-    //Testing if Authentication Endpoint is Accessible
-    @Test
-    public void authenticationEndpointExists() throws Exception {
-
-        AuthRequest ar = new AuthRequest();
-        ar.setUserName("test");
-        ar.setPassword("test");
-        this.mockMvc.perform(post("/authenticate",ar)).andDo(print()).andExpect(status().is(HttpStatus.BAD_REQUEST.value()));
-
-    }
 
     @Test
     public void authenticationIsSuccessful() throws Exception {
@@ -91,7 +81,7 @@ public class DoorApiTest {
 
 
     @Test
-    public void postEventWithAuthorizedUser() throws Exception {
+    public void postEnterEventWithAuthorizedUser() throws Exception {
 
         //Setup Data
         String doorUID = "test_door";
